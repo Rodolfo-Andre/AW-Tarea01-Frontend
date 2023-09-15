@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <mat-toolbar color="primary">
+      <span>Registra Empleado</span>
+    </mat-toolbar>
+  </div>
+  <div class="row">
+    <mat-form-field class="col-md-6">
+      <mat-label>Nombres</mat-label>
+      <input matInput [(ngModel)]="empleado.nombres" />
+    </mat-form-field>
+    <mat-form-field class="col-md-6">
+      <mat-label>Estado</mat-label>
+      <mat-select [(ngModel)]="empleado.estado">
+        <mat-option value="-1"> [Seleccione] </mat-option>
+        <mat-option value="1">Soltero</mat-option>
+        <mat-option value="1">Casado</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field class="col-md-6">
+      <mat-label>País</mat-label>
+      <mat-select [(ngModel)]="empleado.idPais">
+        <mat-option value="-1"> [Seleccione] </mat-option>
+        <ng-container *ngFor="let pais of paises">
+          <mat-option value="{{ pais.idPais }}">{{ pais.nombre }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-md-6">
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        disabled
+        [(ngModel)]="selectedDate"
+        (dateChange)="onDateSelected()"
+      />
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      (click)="onSubmit()"
+    >
+      Registra
+    </button>
+  </div>
+</div>

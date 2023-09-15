@@ -1,0 +1,18 @@
+import { Injectable } from '@angular/core';
+import { AppSettings } from '../app.settings';
+import { HttpClient } from '@angular/common/http';
+import { Modalidad } from '../models/modalidad.model';
+import { Observable } from 'rxjs';
+
+const baseUrlModalidad = `${AppSettings.API_ENDPOINT}/modalidad`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ModalidadService {
+  constructor(private http: HttpClient) {}
+
+  createModalidad(modalidad: Modalidad): Observable<any> {
+    return this.http.post<Modalidad>(baseUrlModalidad, modalidad);
+  }
+}
